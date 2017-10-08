@@ -44,7 +44,7 @@ HINT: Use substring()
  --------------------------- */
 
 function rotate_string(text) {
-  
+
 for (var  i=0;i<text.length;i++){
   text=text.substring(1,text.length)+text[0];
   console.log(text);
@@ -75,10 +75,17 @@ HINT: Use split() and substring()
 
  --------------------------- */
 
-function protect_email(email) {
-  return "protected email";
-}
+ function protect_email(email) {
+     var avg, splitted, part1, part2;
+     splitted = email.split("@");
+     part1 = splitted[0];
+     avg = part1.length / 2;
+     part1 = part1.substring(0, (part1.length - avg));
+     part2 = splitted[1];
+     return part1 + "...@" + part2;
+ };
 
+ console.log( protect_email("sayem243@example.com"));
 console.log("Protected email:");
 /* Uncomment the following to check */
   //console.log(protect_email("harry_potter@gmail.com"));
@@ -102,13 +109,14 @@ HINT: Use join(), split() and sort() functions
  --------------------------- */
 
 function alphabetic_order(word) {
-  return "rearranged word";
+return word.split('').sort().join('');
+  //return "rearranged word";
 }
 
 console.log("Alphabetic Order:");
 /* Uncomment the following to check */
-  // console.log(alphabetic_order("webmaster"));
-  // console.log(alphabetic_order("textbook"));
+   console.log(alphabetic_order("webmaster"));
+  console.log(alphabetic_order("textbook"));
 
 
 
@@ -128,9 +136,25 @@ Output:
  --------------------------- */
 
 function remove_duplicates(arr) {
+
+  var x,
+       len=arr.length,
+       out=[],
+       obj={};
+
+   for (x=0; x<len; x++) {
+     obj[arr[x]]=0;
+   }
+   for (x in obj) {
+     out.push(x);
+   }
+   return out;
   console.log("Duplicates removed from array");
 }
-
+var Mynum = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+result = remove_duplicates(Mynum);
+console.log(Mynum);
+console.log(result);
 console.log("Remove Duplicate Values:");
 /* Uncomment the following to check */
   // remove_duplicates([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]);
@@ -151,9 +175,24 @@ Output:
 HINT: Use toString() and parseInt() functions
  --------------------------- */
 
-function dash_in_odd(number) {
-  console.log("odd numbers separated by dashes");
-}
+ function dash_in_odd(number) {
+
+
+     var str=number.toString();
+     var result= [str[0]];
+
+     for (var i=1;i<str.length;i++) {
+       if ((str[i-1]%2 ===1 ) &&(str[i]%2 ===1)) {
+         result.push('-',str[i]);
+
+       }
+       else
+       {
+         result.push(str[i]);
+       }
+     }
+     console.log(result.join(''));
+ }
 
 console.log("Dash between ODD Numbers:");
 /* Uncomment the following to check */
@@ -175,13 +214,24 @@ HINT: Use Math.ceil() and Math.random()
 
  --------------------------- */
 
-function guessing_game(guess) {
-  // Get a random integer from 1 to 10 inclusive
-  console.log("matched or unmatched?");
-}
 
-console.log("Guessing Game:");
-/* Uncomment the following to check */
-  // var guess = prompt('Guess the number between 1 and 10 inclusive');
-  // console.log("User guessed: "+ guess);
-  // guessing_game(guess);
+ function guessing_game(guess) {
+
+   console.log("matched or unmatched?");
+
+   var num =Math.ceil(Math.random()+10);
+   if (guess==num) {
+     alert('matched');
+   }
+   else
+   {
+     alert('not matched, the num was ' + num);
+   }
+
+ }
+
+ console.log("Guessing Game:");
+
+   var guess=prompt('guess the number between 1 and 10');
+   console.log("user guess" + guess);
+   guessing_game(guess);
